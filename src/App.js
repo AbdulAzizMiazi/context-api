@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext, useState } from 'react';
 import './App.css';
+import CompOne from './components/CompOne/CompOne';
+import CompSec from './components/CompSec/CompSec';
+import CompThi from './components/CompThi/CompThi';
+import Navbar from './components/NavBar/Navbar';
 
+export const ContextAPI = createContext();
 function App() {
+  // export const ContextAPI = createContext(); | shows an error => we can't export anything from the inside of a function()
+  
+  const [cngNum, setCngNum] = useState(0);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextAPI.Provider value={[cngNum, setCngNum]}>
+      <Navbar  />
+      <CompOne />
+      <CompSec />
+      <CompThi />
+    </ContextAPI.Provider>
   );
 }
 
